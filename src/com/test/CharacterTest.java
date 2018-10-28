@@ -23,7 +23,6 @@ public class CharacterTest
 
       assertTrue(mage.getBasicAttack().getName().equals("Boule de Feu"));
       assertTrue(mage.getSpecialAttack().getName().equals("Soin"));
-
     }
 
     @Test
@@ -33,7 +32,6 @@ public class CharacterTest
 
         assertTrue(warrior.getBasicAttack().getName().equals("Coup d'Épée"));
         assertTrue(warrior.getSpecialAttack().getName().equals("Coup de Rage"));
-
     }
 
     @Test
@@ -43,7 +41,6 @@ public class CharacterTest
 
         assertTrue(rogue.getBasicAttack().getName().equals("Tir à l'Arc"));
         assertTrue(rogue.getSpecialAttack().getName().equals("Concentration"));
-
     }
 
 }

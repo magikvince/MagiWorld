@@ -12,4 +12,7 @@ package com.magikvince;
  *
  */
 public class Round {
+
+    private int number;
+    private Character active_character;
 }
