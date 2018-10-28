@@ -1,7 +1,8 @@
 package com.magikvince;
 
 /**
- * simule le déroulement d'une partie et les actions réalisées à chaque tour
+ * Simulate a game and a fight between two characters<BR>
+ * a new round is started until one of the character has no remaining life.
  *
  */
 
@@ -13,18 +14,10 @@ public class Game
     public Character getplayer1() {
         return player1;
     }
-
-    public void setplayer1(Character player1) {
-        this.player1 = player1;
-    }
-
     public Character getplayer2() {
         return player2;
     }
 
-    public void setplayer2(Character player2) {
-        this.player2 = player2;
-    }
 
     public Game (Character player1 , Character player2)
     {
@@ -34,12 +27,13 @@ public class Game
 
     /**
      *
-     * commence le tour par tour
+     *  Start the fight round by round
      */
 
     public void start()
     {
 
+        //while ( player1.)
 
     }
 }

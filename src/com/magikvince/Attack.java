@@ -2,8 +2,8 @@ package com.magikvince;
 
 /**
  *
- * Définit une attaque d'un personnage
- * Elle peut être soit basique , soit spéciale
+ * represents an attack of a Character<BR>
+ * It can be either a basic or special attack.
  *
  *
  */
@@ -23,4 +23,19 @@ public class Attack
         this.selfDamage = auto;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getEnemyDamage() {
+        return enemyDamage;
+    }
+
+    public int getSelfDamage() {
+        return selfDamage;
+    }
 }

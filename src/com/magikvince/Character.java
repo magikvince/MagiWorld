@@ -3,6 +3,14 @@ package com.magikvince;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+/**
+ *
+ * Represents a Character of the Game.<BR>
+ * It can be either a Warrior, a Mage or a Rogue.
+ *
+ */
+
 public class Character
 {
     protected String name;
@@ -17,6 +25,20 @@ public class Character
 
     protected Attack basicAttack;
     protected Attack specialAttack;
+
+
+    public Character(String name, int level , int strength, int agility, int intelligence, Attack basic, Attack special)
+    {
+        this.name = name;
+        this.level = level;
+        this.life = this.level * 5;
+        this.strength = strength;
+        this.agility = agility;
+        this.intelligence = intelligence;
+        this.basicAttack = basic;
+        this.specialAttack = special;
+        this.remaining_life = this.life;
+    }
 
     public Character(String name)
     {
@@ -58,11 +80,48 @@ public class Character
         }while ( ! checkAttributes());
     }
 
-    /**
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getLife() {
+        return life;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getAgility() {
+        return agility;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public int getRemaining_life() {
+        return remaining_life;
+    }
+
+    public Attack getBasicAttack() {
+        return basicAttack;
+    }
+
+    public Attack getSpecialAttack() {
+        return specialAttack;
+    }
+
+     /**
      *
      * Create a specialized Character instance
      *
-     * @param name non du personnage
+     * @param name name of character
      * @return instance of either Warrior, Mage or Rogue
      */
 
@@ -98,15 +157,43 @@ public class Character
         return null;
     }
 
+    public Attack chooseAttack()
+    {
+        int attack_choice = 0;
+
+        String texte = this.name + " (" + this.remaining_life + ") veuillez choisir votre action ";
+        texte += "(1: Attaque basique, 2: Attaque speciale)";
+
+        try {
+            Scanner sc = new Scanner(System.in);
+            while ( attack_choice != 1 && attack_choice != 2)
+            {
+                System.out.println(texte);
+                attack_choice = sc.nextInt();
+            }
+        }
+        catch ( InputMismatchException ime)
+        {
+            System.out.println("ERREUR de saisie : veuillez choisir entre 1 ou 2 !");
+            this.chooseAttack();
+        }
+
+        switch(attack_choice)
+        {
+            case 1: return this.basicAttack;
+            case 2: return this.specialAttack;
+            default : return null;
+        }
+    }
+
     public void useAttack(Attack attack, Character player )
     {
 
     }
 
-
     /**
      *
-     * Met à jour la vie_restante
+     * Update of remaining life after receving enemy attack
      * @param damage amout of damage to take into account to calculate left life
      *
      */
@@ -133,9 +220,9 @@ public class Character
 
     }
 
-    private boolean checkAttributes()
+    protected boolean checkAttributes()
     {
         int totalAttributes = this.strength + this.intelligence + this.agility;
-        return ( this.level >= totalAttributes);
+        return ( this.level == totalAttributes);
     }
 }
