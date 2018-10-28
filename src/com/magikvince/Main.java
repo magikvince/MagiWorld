@@ -5,11 +5,13 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
 
+        System.out.println("Création du personnage du Joueur 1");
+        Character player1 = new Character("Joueur 1");
 
-        Character joueur1 = new Character("Joueur 1");
-        Personnage joueur2 = new Character("Joueur 2")
+        System.out.println("Création du personnage du Joueur 2");
+        Character player2 = new Character("Joueur 2");
 
-        Partie partie = new Partie(joueur1 , joueur2);
+        Game game = new Game(player1 , player2);
 
     }
 }

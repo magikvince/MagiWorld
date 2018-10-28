@@ -10,17 +10,17 @@ package com.magikvince;
 
 public class Attack
 {
-    private String nom;
+    private String name;
     private String type;
     private int enemyDamage;
-    private int autoDamage;
+    private int selfDamage;
 
-    public Attaque(String nom, String type, int enemy, int auto)
+    public Attack(String nom, String type, int enemy, int auto)
     {
-        this.nom = nom;
+        this.name = nom;
         this.type = type;
         this.enemyDamage = enemy;
-        this.autoDamage = auto;
+        this.selfDamage = auto;
     }
 
 }

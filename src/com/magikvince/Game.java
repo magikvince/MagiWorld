@@ -26,13 +26,13 @@ public class Game
         this.player2 = player2;
     }
 
-    public Partie (Character player1 , Character player2)
+    public Game (Character player1 , Character player2)
     {
         this.player1 = player1;
         this.player2 = player2;
     }
 
-    /**4
+    /**
      *
      * commence le tour par tour
      */
