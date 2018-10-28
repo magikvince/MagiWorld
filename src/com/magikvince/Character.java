@@ -2,24 +2,23 @@ package com.magikvince;
 
 import java.util.Scanner;
 
-public class Personnage
+public class Character
 {
-    protected String nom;
-    protected int classe;
-    protected int niveau;
-    protected int vie;
-    protected int force;
-    protected int agilite;
+    protected String name;
+    protected int level;
+    protected int life;
+    protected int strenght;
+    protected int agility;
     protected int intelligence;
 
-    protected int vie_restante;
+    protected int ;
 
 
-    public Personnage( String nom)
+    public Character( String name)
     {
-        this.nom = nom;
+        this.name = name;
 
-        System.out.println("Création du personnage du " + nom );
+        System.out.println("Création du personnage du " + name );
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Veuillez choisir la classe de votre personnage ( 1 : Guerrier, 2 : Rôdeur, 3 : Mage");
@@ -34,7 +33,7 @@ public class Personnage
         System.out.println("Intelligence du personnage ? ");
     }
 
-    public void fight(Attaque attaque, Personnage perso)
+    public void fight(Attaque attaque, Character perso)
     {
 
     }

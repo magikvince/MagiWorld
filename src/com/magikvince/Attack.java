@@ -8,9 +8,8 @@ package com.magikvince;
  *
  */
 
-public class Attaque
+public class Attack
 {
-
     private String nom;
     private String type;
     private int enemyDamage;

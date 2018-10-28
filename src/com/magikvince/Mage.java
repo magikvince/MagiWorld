@@ -1,4 +1,4 @@
 package com.magikvince;
 
-public class Mage extends Personnage {
+public class Mage extends Character {
 }
