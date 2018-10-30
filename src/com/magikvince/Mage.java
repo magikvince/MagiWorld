@@ -15,6 +15,7 @@ public class Mage extends Character
         this.specialAttack = new Attack("Soin", "special", 0, this.intelligence * 2);
     }
 
+
     public Mage(String name, int level , int strength, int agility , int intelligence)
     {
         super(name, level, strength, agility, intelligence, null, null);
@@ -25,5 +26,10 @@ public class Mage extends Character
     public String toString()
     {
         return "Abracabra je suis le Mage " + super.toString();
+    }
+
+    @Override
+    public int calculateDamage(Attack attack) {
+        return 0;
     }
 }

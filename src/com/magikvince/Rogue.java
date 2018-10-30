@@ -38,5 +38,8 @@ public class Rogue extends Character
         return "Groak je suis le Rôdeur " + super.toString();
     }
 
-
+    @Override
+    public int calculateDamage(Attack attack) {
+        return 0;
+    }
 }

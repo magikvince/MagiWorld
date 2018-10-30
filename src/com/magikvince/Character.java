@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  */
 
-public class Character
+public abstract class Character
 {
     protected String name;
 
@@ -26,6 +26,12 @@ public class Character
     protected Attack basicAttack;
     protected Attack specialAttack;
 
+
+    /***
+     *
+     * Constructor for tests with Junits without having to choose values with Scanner and System.in
+     *
+     */
 
     public Character(String name, int level , int strength, int agility, int intelligence, Attack basic, Attack special)
     {
@@ -186,10 +192,20 @@ public class Character
         }
     }
 
-    public void useAttack(Attack attack, Character player )
-    {
 
+    public void useAttack(Attack attack, Character enemy )
+    {
+       int amount = this.calculateDamage(attack);
+       enemy.takeDamage(amount);
     }
+
+    /**
+     * Indicates the amount of damage dealt by chosen attack to enemy<BR>
+     * this depends on basic or special attack and of Character speciality ( Mage , Warrior , Rogue)
+     * @return amount of damage
+     */
+
+    public abstract int calculateDamage(Attack attack);
 
     /**
      *
@@ -225,4 +241,5 @@ public class Character
         int totalAttributes = this.strength + this.intelligence + this.agility;
         return ( this.level == totalAttributes);
     }
+
 }

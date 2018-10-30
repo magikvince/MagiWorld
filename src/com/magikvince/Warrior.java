@@ -29,4 +29,9 @@ public class Warrior extends Character
     {
         return "Woarg je suis le Guerrier " + super.toString();
     }
+
+    @Override
+    public int calculateDamage(Attack attack) {
+        return 0;
+    }
 }

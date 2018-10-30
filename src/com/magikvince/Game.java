@@ -24,7 +24,6 @@ public class Game
         this.player2 = player2;
         this.rounds = new ArrayList<Round>();
         this.active_character = this.player1;
-
     }
 
     public Character getplayer1() {
@@ -57,6 +56,9 @@ public class Game
         {
             Round round = new Round();
             this.rounds.add(round);
+
+            this.active_character.chooseAttack();
+
         }
 
     }
