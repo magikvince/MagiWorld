@@ -13,6 +13,8 @@ public class Game
 {
     private Character player1;
     private Character player2;
+    private Character loser;
+    private Character enemy;
 
     private List<Round> rounds;
 
@@ -24,6 +26,8 @@ public class Game
         this.player2 = player2;
         this.rounds = new ArrayList<Round>();
         this.active_character = this.player1;
+        this.enemy = this.player2;
+        this.loser = null;
     }
 
     public Character getplayer1() {
@@ -54,12 +58,32 @@ public class Game
 
         while ( player1.getRemaining_life() > 0 && player2.getRemaining_life() > 0 )
         {
-            Round round = new Round();
+            Round round = new Round(this, this.active_character, this.enemy );
             this.rounds.add(round);
 
-            this.active_character.chooseAttack();
+            System.out.println("Creation de la ronde : " + this.rounds.size() );
 
+            round.start();
+            round.stop();
+            this.switchPlayers();
         }
+    }
 
+    public void switchPlayers()
+    {
+        Character temp;
+        temp = this.enemy;
+        this.enemy = this.active_character;
+        this.active_character = temp;
+    }
+
+    public void setLoser(Character loser)
+    {
+        this.loser = loser;
+    }
+
+    public void stop()
+    {
+        System.out.println(this.loser.getName() + " a perdu !");
     }
 }

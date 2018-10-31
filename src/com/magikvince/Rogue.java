@@ -30,7 +30,10 @@ public class Rogue extends Character
      */
     public void Concentrate()
     {
-        this.agility += this.level / 2;
+        int concentrated = this.level / 2;
+        this.agility += concentrated;
+
+        System.out.println(this.name + " utilise " + this.getSpecialAttack().getName() + " et gagne " + concentrated + " en agilité.");
     }
 
     public String toString()
@@ -39,7 +42,16 @@ public class Rogue extends Character
     }
 
     @Override
-    public int calculateDamage(Attack attack) {
-        return 0;
+    public int calculateDamage(Attack attack)
+    {
+        if (attack.getType().equals("basic")) {
+            return this.getAgility();
+        } else if (attack.getType().equals("special")) {
+            this.Concentrate();
+            return 0;
+        }
+        else {
+            return 0;
+        }
     }
 }

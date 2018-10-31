@@ -31,7 +31,19 @@ public class Warrior extends Character
     }
 
     @Override
-    public int calculateDamage(Attack attack) {
-        return 0;
+    public int calculateDamage(Attack attack)
+    {
+        if (attack.getType().equals("basic")) {
+            return this.getStrength();
+        } else if (attack.getType().equals("special")) {
+
+            int self_damage = this.strength / 2;
+            this.takeDamage(self_damage);
+
+            return this.strength * 2;
+        }
+        else {
+            return 0;
+        }
     }
 }

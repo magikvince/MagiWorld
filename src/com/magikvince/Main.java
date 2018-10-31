@@ -14,5 +14,6 @@ public class Main
         Character player2 = Character.chooseSpeciality("Joueur 2");
 
         Game game = new Game(player1 , player2);
+        game.start();
     }
 }

@@ -13,6 +13,44 @@ package com.magikvince;
  */
 public class Round {
 
-    private int number;
     private Character active_character;
+    private Character enemy;
+    private Game game;
+
+    public Round(Game game, Character active_character, Character enemy) {
+        this.game = game;
+        this.active_character = active_character;
+        this.enemy = enemy;
+    }
+
+    public Character getActive_character() {
+        return active_character;
+    }
+
+    public Character getEnemy() {
+        return enemy;
+    }
+
+    public void start()
+    {
+        Attack attack = this.active_character.chooseAttack();
+        this.active_character.useAttack(attack, this.enemy);
+    }
+
+    public void stop()
+    {
+        if ( this.enemy.isDead() ) {
+            game.setLoser(this.enemy);
+            game.stop();
+        }
+
+        if ( this.active_character.isDead() )
+        {
+            game.setLoser(this.active_character);
+            game.stop();
+        }
+    }
+
+
+
 }

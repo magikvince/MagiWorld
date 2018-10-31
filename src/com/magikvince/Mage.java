@@ -29,7 +29,33 @@ public class Mage extends Character
     }
 
     @Override
-    public int calculateDamage(Attack attack) {
-        return 0;
+    public int calculateDamage(Attack attack)
+    {
+        if (attack.getType().equals("basic")) {
+            return this.getIntelligence();
+        } else if (attack.getType().equals("special")) {
+            this.heal();
+            return 0;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    private void heal() {
+
+        int theoric_healed = this.intelligence * 2;
+        int real_healed = 0;
+
+        if ( this.remaining_life + theoric_healed <= this.life ) {
+            real_healed = theoric_healed;
+            this.remaining_life += real_healed;
+        }
+        else{
+            real_healed = this.life - this.remaining_life;
+            this.remaining_life = this.life;
+        }
+
+        System.out.println(this.name + " utilise " + this.specialAttack.getName() + " et gagne " + real_healed + " en vitalité.");
     }
 }

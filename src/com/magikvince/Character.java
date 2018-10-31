@@ -141,7 +141,7 @@ public abstract class Character
         try
         {
             while ((class_choice < 1 || class_choice > 3)) {
-                System.out.println("Veuillez choisir la classe de votre personnage ( 1 : Guerrier, 2 : Rôdeur, 3 : Mage");
+                System.out.println("Veuillez choisir la classe de votre personnage ( 1 : Guerrier, 2 : Rôdeur, 3 : Mage)");
                 class_choice = sc.nextInt();
             }
 
@@ -196,6 +196,10 @@ public abstract class Character
     public void useAttack(Attack attack, Character enemy )
     {
        int amount = this.calculateDamage(attack);
+
+       if (amount > 0)
+           System.out.println(this.name + " utilise " + attack.getName() + " inflige " + amount + " dommages.");
+
        enemy.takeDamage(amount);
     }
 
@@ -216,10 +220,9 @@ public abstract class Character
 
     public void takeDamage ( int damage)
     {
-
-
+        this.remaining_life = this.remaining_life - damage;
+        System.out.println(this.name + " perd " + damage + " points de vie");
     }
-
 
     /**
      *
@@ -242,4 +245,8 @@ public abstract class Character
         return ( this.level == totalAttributes);
     }
 
+    public boolean isDead()
+    {
+        return (this.remaining_life > 0);
+    }
 }
