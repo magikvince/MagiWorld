@@ -55,8 +55,11 @@ public class Game
 
     public void start()
     {
+        System.out.println("Début de la partie , bonne chance !");
+        System.out.println("vie du joueur " + this.player1.getName() + " : " + this.player1.getRemaining_life());
+        System.out.println("vie du joueur " + this.player2.getName() + " : " + this.player2.getRemaining_life());
 
-        while ( player1.getRemaining_life() > 0 && player2.getRemaining_life() > 0 )
+        while ( this.player1.getRemaining_life() > 0 && this.player2.getRemaining_life() > 0 )
         {
             Round round = new Round(this, this.active_character, this.enemy );
             this.rounds.add(round);

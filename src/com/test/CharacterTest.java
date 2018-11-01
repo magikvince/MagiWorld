@@ -2,11 +2,11 @@ package com.test;
 
 import com.magikvince.*;
 
+import com.magikvince.Character;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -15,6 +15,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class CharacterTest
 {
+    @Test
+    public  void Given_Character_When_Using_Choosespeciality_Then_Display_Character_infos()
+    {
+        //Character player1 = Character.chooseSpeciality("player1_test");
+        Mage player1 = new Mage("Magikvince", 20, 0, 0, 20);
+        assertNotNull(player1);
+        assertEquals(100, player1.getLife());
+        assertEquals(player1.getRemaining_life(), player1.getLife());
+        assertFalse(player1.isDead());
+        assertTrue( player1.getRemaining_life() > 0);
+    }
+
     @Test
     public void Given_Attack_When_Choosing_Character_Mage_Then_DisplayText()
     {

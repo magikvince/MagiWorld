@@ -1,5 +1,6 @@
 package com.magikvince;
 
+import java.lang.reflect.Field;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -83,7 +84,7 @@ public abstract class Character
                 System.out.println("La somme des attributs du personnage ne peut pas être plus grande que son niveau!");
                 System.out.println("Veuillez recommencer la saisie svp.");
             }
-        }while ( ! checkAttributes());
+        } while ( ! checkAttributes());
     }
 
 
@@ -147,12 +148,16 @@ public abstract class Character
 
             switch (class_choice) {
                 case 1:
+                    System.out.println("Création d'un Guerrier");
                     return new Warrior(name);
                 case 2:
+                    System.out.println("Création d'un Rôdeur");
                     return new Rogue(name);
                 case 3:
+                    System.out.println("Création d'un Mage");
                     return new Mage(name);
                 default:
+                    System.out.println("Choix de personnage non compris , on renvoie null !");
                     return null;
             }
         }
@@ -160,6 +165,7 @@ public abstract class Character
             System.out.println("ERREUR de saisie : veuillez saisir un nombre lors du choix de votre personnage svp!");
             System.exit(1);
         }
+        System.out.println("on ne devrait pas tomber dans ce cas , mais on retourne null");
         return null;
     }
 
@@ -247,6 +253,21 @@ public abstract class Character
 
     public boolean isDead()
     {
-        return (this.remaining_life > 0);
+        System.out.println("Le joueur " + this.name + " a " + this.remaining_life + " sur " + this.life + " point(s) de vie restant(s)!");
+        System.out.println("isDead = " + (this.remaining_life <= 0));
+        return this.remaining_life <= 0;
     }
+
+    public void getCharacterInfos()
+    {
+        /*
+        Class cl = Class.forName("Character");
+        for  ( Field field : cl.getFields() )
+        {
+            System.out.println(field.getName());
+        }
+        */
+    }
+
+
 }
