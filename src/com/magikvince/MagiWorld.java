@@ -2,16 +2,18 @@ package com.magikvince;
 
 import java.util.Scanner;
 
-public class Main
+public class MagiWorld
 {
 
     public static void main(String[] args)
     {
+        CharacterFactory cf = new CharacterFactory();
+
         System.out.println("Création du personnage du Joueur 1");
-        Character player1 = Character.chooseSpeciality("Joueur 1");
+        Character player1 = cf.CreateCharacter();
 
         System.out.println("Création du personnage du Joueur 2");
-        Character player2 = Character.chooseSpeciality("Joueur 2");
+        Character player2 = cf.CreateCharacter();
 
         Game game = new Game(player1 , player2);
         game.start();

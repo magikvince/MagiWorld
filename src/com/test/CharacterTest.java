@@ -6,6 +6,9 @@ import com.magikvince.Character;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -15,11 +18,33 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CharacterTest
 {
+
     @Test
-    public  void Given_Character_When_Using_Choosespeciality_Then_Display_Character_infos()
+    public void Given_Factory_When_Creating_Character_Then_Display_infos()
     {
-        //Character player1 = Character.chooseSpeciality("player1_test");
-        Mage player1 = new Mage("Magikvince", 20, 0, 0, 20);
+        CharacterFactory cf = new CharacterFactory();
+
+        //simulate keyboard input by user
+        System.setIn(new ByteArrayInputStream("3\nMagikvince\n30\n0\n30\n0\n".getBytes()));
+        Scanner sc = new Scanner(System.in);
+        System.out.println(sc.nextInt());
+        System.out.println(sc.next());
+        System.out.println(sc.nextInt());
+        System.out.println(sc.nextInt());
+        System.out.println(sc.nextInt());
+        System.out.println(sc.nextInt());
+        Character player1 = cf.CreateCharacter();
+
+        assertEquals(player1.getRemaining_life(), player1.getLife());
+        assertNotNull(player1);
+        assertFalse(player1.isDead());
+        assertTrue( player1.getRemaining_life() > 0);
+    }
+
+    @Test
+    public  void Given_Character_When_Checking_Life_Then_Display_Character_infos()
+    {
+        Mage player1 = new Mage("Magikvince", 20, 0, 20, 0);
         assertNotNull(player1);
         assertEquals(100, player1.getLife());
         assertEquals(player1.getRemaining_life(), player1.getLife());
@@ -30,7 +55,7 @@ public class CharacterTest
     @Test
     public void Given_Attack_When_Choosing_Character_Mage_Then_DisplayText()
     {
-      Mage mage = new Mage("Magikvince", 20, 0, 0, 20);
+      Mage mage = new Mage("Magikvince", 20, 0, 20, 0);
       assertTrue(mage.getBasicAttack().getName().equals("Boule de Feu"));
       assertTrue(mage.getSpecialAttack().getName().equals("Soin"));
     }
@@ -47,7 +72,7 @@ public class CharacterTest
     @Test
     public void Given_Attack_When_Choosing_Character_Rogue_Then_DisplayText()
     {
-        Rogue rogue = new Rogue("Cenvin", 20, 0, 20, 0);
+        Rogue rogue = new Rogue("Cenvin", 20, 0, 0, 20);
         assertTrue(rogue.getBasicAttack().getName().equals("Tir à l'Arc"));
         assertTrue(rogue.getSpecialAttack().getName().equals("Concentration"));
     }
@@ -55,7 +80,7 @@ public class CharacterTest
     @Test
     public void Given_Level_When_Creating_Rogue_Then_Control_Life_Value()
     {
-        Rogue rogue = new Rogue("Cenvin", 20, 0, 20, 0);
+        Rogue rogue = new Rogue("Cenvin", 20, 0, 0, 20);
         assertEquals(100 , rogue.getLife() );
     }
 
@@ -64,7 +89,7 @@ public class CharacterTest
     @Test
     public void Given_Mage_Basic_Attack_When_Calculating_Damage_Then_Display_Damage()
     {
-        Mage mage = new Mage("Magikvince", 20, 0, 0, 20);
+        Mage mage = new Mage("Magikvince", 20, 0, 20, 0);
         assertEquals(20, mage.calculateDamage(mage.getBasicAttack()) );
     }
 
@@ -78,14 +103,14 @@ public class CharacterTest
     @Test
     public void Given_Rogue_Basic_Attack_When_Calculating_Damage_Then_Display_Damage()
     {
-        Rogue rogue = new Rogue("Cenvin", 20, 0, 20, 0);
+        Rogue rogue = new Rogue("Cenvin", 20, 0, 0, 20);
         assertEquals(20, rogue.calculateDamage(rogue.getBasicAttack()) );
     }
 
     @Test
     public void Given_Mage_Special_Attack_When_Calculating_Damage_and_remaining_life_Then_Display_Damage()
     {
-        Mage mage = new Mage("Magikvince", 30, 0, 0, 30);
+        Mage mage = new Mage("Magikvince", 30, 0, 30, 0);
 
         mage.takeDamage(100);
         assertEquals( 50, mage.getRemaining_life());
@@ -97,7 +122,7 @@ public class CharacterTest
     @Test
     public void Given_Warrior_Special_Attack_When_Calculating_Damage_Then_Display_Damage()
     {
-        Warrior warrior = new Warrior("Tofy", 15, 10, 5, 0);
+        Warrior warrior = new Warrior("Tofy", 15, 10, 0, 5);
         assertEquals(20, warrior.calculateDamage(warrior.getSpecialAttack()) );
         assertEquals(70 , warrior.getRemaining_life());
         assertEquals(20, warrior.calculateDamage(warrior.getSpecialAttack()) );
@@ -107,7 +132,7 @@ public class CharacterTest
     @Test
     public void Given_Rogue_Special_Attack_When_Calculating_Agility_Then_Display_New_Agility()
     {
-        Rogue rogue = new Rogue("Cenvin", 20, 0, 20, 0);
+        Rogue rogue = new Rogue("Cenvin", 20, 0, 0, 20);
         rogue.Concentrate();
         assertEquals(30, rogue.getAgility());
     }
@@ -115,7 +140,7 @@ public class CharacterTest
     @Test
     public void Given_Mage_When_Taking_Damage_Then_Update_Remaining_Life()
     {
-        Mage mage = new Mage("Magikvince", 30, 0, 0, 30);
+        Mage mage = new Mage("Magikvince", 30, 0, 30, 0);
         assertEquals(150, mage.getLife());
         mage.takeDamage(100);
         assertEquals(50, mage.getRemaining_life());
@@ -124,7 +149,7 @@ public class CharacterTest
     @Test
     public void Given_Warrior_When_Taking_Damage_Then_Update_Remaining_Life()
     {
-        Warrior warrior = new Warrior("Tofy", 15, 10, 5, 0);
+        Warrior warrior = new Warrior("Tofy", 15, 10, 0, 5);
         assertEquals(75, warrior.getLife());
         warrior.takeDamage(10);
         warrior.takeDamage(10);
@@ -135,7 +160,7 @@ public class CharacterTest
     @Test
     public void Given_Rogue_When_Taking_Damage_Then_Update_Remaining_Life()
     {
-        Rogue rogue = new Rogue("Cenvin", 20, 0, 20, 0);
+        Rogue rogue = new Rogue("Cenvin", 20, 0, 0, 20);
         assertEquals(100, rogue.getLife());
         rogue.takeDamage(10);
         assertEquals(90, rogue.getRemaining_life());

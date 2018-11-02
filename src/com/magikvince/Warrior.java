@@ -9,17 +9,10 @@ package com.magikvince;
  */
 public class Warrior extends Character
 {
-    public Warrior( String name)
-    {
-        super(name);
 
-        this.basicAttack = new Attack("Coup d'Épée", "basic", this.strength, 0);
-        this.specialAttack = new Attack("Coup de Rage", "special", this.strength * 2, this.strength / 2);
-    }
-
-    public Warrior(String name, int level , int strength, int agility , int intelligence)
+    public Warrior(String name, int level , int strength, int intelligence, int agility )
     {
-        super(name, level, strength, agility, intelligence, null, null);
+        super(name, level, strength, intelligence, agility, null, null);
         this.basicAttack = new Attack("Coup d'Épée", "basic", this.strength, 0);
         this.specialAttack = new Attack("Coup de Rage", "special", this.strength * 2, this.strength / 2);
     }

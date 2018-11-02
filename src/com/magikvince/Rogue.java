@@ -9,17 +9,10 @@ package com.magikvince;
  */
 public class Rogue extends Character
 {
-    public Rogue(String name)
-    {
-        super(name);
 
-        this.basicAttack = new Attack("Tir à l'Arc", "basic", this.agility, 0);
-        this.specialAttack = new Attack("Concentration", "special", 0 , 0);
-    }
-
-    public Rogue(String name, int level , int strength, int agility , int intelligence)
+    public Rogue(String name, int level , int strength, int intelligence, int agility )
     {
-        super(name, level, strength, agility, intelligence, null, null);
+        super(name, level, strength, intelligence, agility, null, null);
         this.basicAttack = new Attack("Tir à l'Arc", "basic", this.agility, 0);
         this.specialAttack = new Attack("Concentration", "special", 0 , 0);
     }
