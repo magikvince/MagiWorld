@@ -15,6 +15,7 @@ public class Rogue extends Character
         super(name, level, strength, intelligence, agility, null, null);
         this.basicAttack = new Attack("Tir à l'Arc", "basic", this.agility, 0);
         this.specialAttack = new Attack("Concentration", "special", 0 , 0);
+        this.toString();
     }
 
     /**

@@ -31,12 +31,18 @@ public class Round {
         return enemy;
     }
 
+    /**
+     * starts a new round of attack for active player
+     */
     public void start()
     {
         Attack attack = this.active_character.chooseAttack();
         this.active_character.useAttack(attack, this.enemy);
     }
 
+    /**
+     * Checks if any player is dead and then stop the game, or if the fight can continue.
+     */
     public void stop()
     {
         if ( this.enemy.isDead() ) {

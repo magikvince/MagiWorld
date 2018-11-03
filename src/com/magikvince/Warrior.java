@@ -15,6 +15,7 @@ public class Warrior extends Character
         super(name, level, strength, intelligence, agility, null, null);
         this.basicAttack = new Attack("Coup d'Épée", "basic", this.strength, 0);
         this.specialAttack = new Attack("Coup de Rage", "special", this.strength * 2, this.strength / 2);
+        this.toString();
     }
 
 
@@ -26,13 +27,12 @@ public class Warrior extends Character
     @Override
     public int calculateDamage(Attack attack)
     {
-        if (attack.getType().equals("basic")) {
+        if (attack.getType().equals("basic"))
+        {
             return this.getStrength();
-        } else if (attack.getType().equals("special")) {
-
-            int self_damage = this.strength / 2;
-            this.takeDamage(self_damage);
-
+        } else if (attack.getType().equals("special"))
+        {
+            this.self_damage = this.strength / 2;
             return this.strength * 2;
         }
         else {

@@ -22,6 +22,7 @@ public abstract class Character
     protected int agility;
     protected int intelligence;
 
+    protected int self_damage;
     protected int remaining_life;
 
     protected Attack basicAttack;
@@ -45,6 +46,9 @@ public abstract class Character
         this.basicAttack = basic;
         this.specialAttack = special;
         this.remaining_life = this.life;
+        this.self_damage = 0;
+
+        System.out.println(this.toString());
     }
 
     public String getName() {
@@ -83,7 +87,14 @@ public abstract class Character
         return specialAttack;
     }
 
+    public int getSelf_damage() { return self_damage; }
 
+    public void setSelf_damage(int self_damage) { this.self_damage = self_damage;  }
+
+    /**
+     * Makes the character choose between basic or special attack
+     * @return
+     */
     public Attack chooseAttack()
     {
         int attack_choice = 0;
@@ -97,6 +108,9 @@ public abstract class Character
             {
                 System.out.println(texte);
                 attack_choice = sc.nextInt();
+
+                if ( attack_choice != 1 && attack_choice != 2)
+                    System.out.println("ERREUR de saisie : veuillez choisir entre 1 ou 2 !");
             }
         }
         catch ( InputMismatchException ime)
@@ -114,14 +128,29 @@ public abstract class Character
     }
 
 
+    /**
+     * use the attack and deal damage to the enemy
+     * @param attack
+     * @param enemy
+     */
     public void useAttack(Attack attack, Character enemy )
     {
+
+       if ( attack == null)
+           attack = this.chooseAttack();
+
        int amount = this.calculateDamage(attack);
 
        if (amount > 0)
            System.out.println(this.name + " utilise " + attack.getName() + " et inflige " + amount + " dommages.");
 
        enemy.takeDamage(amount);
+
+       if (this.self_damage > 0) {
+           this.takeDamage(self_damage);
+           this.self_damage = 0;
+       }
+
     }
 
     /**
@@ -141,8 +170,10 @@ public abstract class Character
 
     public void takeDamage ( int damage)
     {
-        this.remaining_life = this.remaining_life - damage;
-        System.out.println(this.name + " perd " + damage + " points de vie");
+        if ( damage > 0) {
+            this.remaining_life = this.remaining_life - damage;
+            System.out.println(this.name + " perd " + damage + " points de vie");
+        }
     }
 
     /**
@@ -154,16 +185,27 @@ public abstract class Character
 
     public String toString()
     {
-        String texte = "Joueur " + this.name + " niveau " + this.level +  " je possède " + this.life + " de vitalité, " ;
+        String texte = this.name + " niveau " + this.level +  " je possède " + this.life + " de vitalité, " ;
         texte += this.strength + " de force, " + this.agility + " d'agilité et " + this.intelligence + " d'intelligence !";
         return texte;
 
     }
 
+    /**
+     * Determines if a player is dead or not by checking the remaining life.<BR>
+     * if life is 0 or inferior , they character is dead.
+     * @return true or false is remaining life  superior 0
+     */
     public boolean isDead()
     {
         //System.out.println("Le joueur " + this.name + " a " + this.remaining_life + " point(s) de vie restant(s) sur " + this.life + " !");
         //System.out.println("isDead = " + (this.remaining_life <= 0));
-        return this.remaining_life <= 0;
+
+        if ( this.remaining_life <= 0) {
+            System.out.println(this.getName() + " est mort");
+            return true;
+        }
+        else
+            return false;
     }
 }

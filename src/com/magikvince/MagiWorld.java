@@ -1,7 +1,8 @@
 package com.magikvince;
 
-import java.util.Scanner;
-
+/***
+ * starts the game MagiWorld
+ */
 public class MagiWorld
 {
 

@@ -55,16 +55,16 @@ public class Game
 
     public void start()
     {
-        System.out.println("Début de la partie , bonne chance !");
-        System.out.println("vie du joueur " + this.player1.getName() + " : " + this.player1.getRemaining_life());
-        System.out.println("vie du joueur " + this.player2.getName() + " : " + this.player2.getRemaining_life());
+        //System.out.println("Début de la partie , bonne chance !");
+        //System.out.println("vie du joueur " + this.player1.getName() + " : " + this.player1.getRemaining_life());
+        //System.out.println("vie du joueur " + this.player2.getName() + " : " + this.player2.getRemaining_life());
 
         while ( this.player1.getRemaining_life() > 0 && this.player2.getRemaining_life() > 0 )
         {
             Round round = new Round(this, this.active_character, this.enemy );
             this.rounds.add(round);
 
-            System.out.println("Creation de la ronde : " + this.rounds.size() );
+            //System.out.println("Creation de la ronde : " + this.rounds.size() );
 
             round.start();
             round.stop();
@@ -72,6 +72,9 @@ public class Game
         }
     }
 
+    /**
+     * alternates the active player to deal or receive damage round by round
+     */
     public void switchPlayers()
     {
         Character temp;
@@ -85,8 +88,12 @@ public class Game
         this.loser = loser;
     }
 
+    /**
+     * stops the game and declares who the loser is.
+     */
     public void stop()
     {
         System.out.println(this.loser.getName() + " a perdu !");
+        System.exit(0);
     }
 }

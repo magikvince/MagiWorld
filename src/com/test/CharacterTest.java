@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,16 +26,19 @@ public class CharacterTest
     {
         CharacterFactory cf = new CharacterFactory();
 
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
         //simulate keyboard input by user
-        System.setIn(new ByteArrayInputStream("3\nMagikvince\n30\n0\n30\n0\n".getBytes()));
-        Scanner sc = new Scanner(System.in);
-        System.out.println(sc.nextInt());
-        System.out.println(sc.next());
-        System.out.println(sc.nextInt());
-        System.out.println(sc.nextInt());
-        System.out.println(sc.nextInt());
-        System.out.println(sc.nextInt());
+        System.setIn(new ByteArrayInputStream("3\r\nMagikvince\r\n30\r\n0\r\n30\r\n0\r\n".getBytes()));
+        System.setOut(new PrintStream(outContent));
+
         Character player1 = cf.CreateCharacter();
+
+        String output = outContent.toString().replace("\n", "\r\n");
+
+        System.out.println("output = " + output);
+        //restores the normal output
+        System.setOut(System.out);
 
         assertEquals(player1.getRemaining_life(), player1.getLife());
         assertNotNull(player1);

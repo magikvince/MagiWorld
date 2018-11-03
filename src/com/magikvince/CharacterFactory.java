@@ -4,6 +4,11 @@ package com.magikvince;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+/**
+ * This class contains all the methods to create a new character.<BR>
+ *  Main method is CreateCharacter and it will call other methods to ask the player to choose their character attributes.
+ */
 public class CharacterFactory
 {
     private Scanner sc;
@@ -120,6 +125,12 @@ public class CharacterFactory
 
     }
 
+
+    /**
+     * Checks if attributes of character are correct when creating a new character
+     *
+     * @return true if attributes are corrects or false
+     */
     private boolean checkAttributes(int level, int strength, int intelligence, int agility)
     {
         int totalAttributes = strength + intelligence + agility;
@@ -141,7 +152,6 @@ public class CharacterFactory
      *
      * Create a specialized Character instance
      *
-     * @param name name of character
      * @return instance of either Warrior, Mage or Rogue
      *
      */
@@ -163,13 +173,13 @@ public class CharacterFactory
         } while ( ! checkAttributes(level, strength, intelligence , agility));
 
         switch (speciality) {
-            case 1: System.out.println("Création d'un Guerrier");
+            case 1: //System.out.println("Création d'un Guerrier");
                     return new Warrior(name, level, strength, intelligence, agility);
 
-            case 2: System.out.println("Création d'un Rôdeur");
+            case 2: //System.out.println("Création d'un Rôdeur");
                     return new Rogue(name, level, strength, intelligence, agility);
 
-            case 3: System.out.println("Création d'un Mage");
+            case 3: //System.out.println("Création d'un Mage");
                     return new Mage(name, level, strength, intelligence, agility);
 
             default:
