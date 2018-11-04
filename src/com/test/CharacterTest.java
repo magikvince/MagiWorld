@@ -4,15 +4,11 @@ import com.magikvince.*;
 
 import com.magikvince.Character;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 /**
  * test class for Character.java
@@ -21,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CharacterTest
 {
 
+    /*
     @Test
     public void Given_Factory_When_Creating_Character_Then_Display_infos()
     {
@@ -44,7 +41,7 @@ public class CharacterTest
         assertNotNull(player1);
         assertFalse(player1.isDead());
         assertTrue( player1.getRemaining_life() > 0);
-    }
+    }*/
 
     @Test
     public  void Given_Character_When_Checking_Life_Then_Display_Character_infos()
@@ -89,7 +86,6 @@ public class CharacterTest
         assertEquals(100 , rogue.getLife() );
     }
 
-
     // testing fight abilities
     @Test
     public void Given_Mage_Basic_Attack_When_Calculating_Damage_Then_Display_Damage()
@@ -129,9 +125,8 @@ public class CharacterTest
     {
         Warrior warrior = new Warrior("Tofy", 15, 10, 0, 5);
         assertEquals(20, warrior.calculateDamage(warrior.getSpecialAttack()) );
+        warrior.takeDamage(5);
         assertEquals(70 , warrior.getRemaining_life());
-        assertEquals(20, warrior.calculateDamage(warrior.getSpecialAttack()) );
-        assertEquals(65 , warrior.getRemaining_life());
     }
 
     @Test
